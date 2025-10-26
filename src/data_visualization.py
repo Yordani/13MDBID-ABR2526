@@ -2,6 +2,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from pathlib import Path
+import os
+
+
 
 def visualizar_datos(fuente: str = 'data/raw/bank-additional-full.csv',
                      salida: str ='docs/figures/'):
@@ -10,7 +13,8 @@ def visualizar_datos(fuente: str = 'data/raw/bank-additional-full.csv',
     Args:
         fuente (str): Ruta al archivo CSV con los datos.
         salida (str): Ruta al directorio donde se guardarán las gráficas.
-    """
+    """       
+
         #gRAFICO 1: Distribución de la variable objetivo
         Path(salida).mkdir(parents=True, exist_ok=True)
         df = pd.read_csv(fuente, sep=';')
@@ -54,7 +58,7 @@ def visualizar_datos(fuente: str = 'data/raw/bank-additional-full.csv',
         plt.close()
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":    
     visualizar_datos()
         
 

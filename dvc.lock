@@ -1,0 +1,27 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python src/data_visualization.py
+    deps:
+    - path: data/raw/bank-additional-full.csv
+      hash: md5
+      md5: f6cb2c1256ffe2836b36df321f46e92c
+      size: 5834924
+    - path: src/data_visualization.py
+      hash: md5
+      md5: 74a192ea2f827e5398edf90d5b670c51
+      size: 2262
+    outs:
+    - path: docs/figures
+      hash: md5
+      md5: 0e2953e71a174f3c586c5ace96d96a33.dir
+      size: 133960
+      nfiles: 4
+  prepare_figures_dir:
+    cmd: python -c "import os; os.makedirs('docs/figures', exist_ok=True)"
+    outs:
+    - path: docs/figures/
+      hash: md5
+      md5: d751713988987e9331980363e24189ce.dir
+      size: 0
+      nfiles: 0
