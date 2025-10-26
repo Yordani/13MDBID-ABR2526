@@ -1,13 +1,11 @@
 stages:
-  preprocess:
+  visualize_data:
     cmd: python src/data_visualization.py
     deps:
       - data/raw/bank-additional-full.csv
-      - src/data_visualization.py
     outs:
-       - docs/figures
-    always_changed: true
-
+      - docs/figures/distribucion_educacion.png
+      - docs/figures/distribucion_target.png
   test_data_quality:
     cmd: pytest --html=docs/test_results/test_results.html --self-contained-html test/test_data_quality.py
     deps:
@@ -15,11 +13,20 @@ stages:
       - data/raw/bank-additional-full.csv
     outs:
       - docs/test_results/test_results.html
-    always_changed: true
-
   test_data_gx:
-    cmd: pytest --html=docs/test_results/test_results.html --self-contained-html  test/test_data_gx.py
+    cmd: pytest --html=docs/test_results/test_results_gx.html --self-contained-html test/test_data_gx.py
     deps:
-      - test/test_data_quality.py
+      - test/test_data_gx.py
       - data/raw/bank-additional-full.csv
+    outs:
+      - docs/test_results/test_results_gx.html
+  preprocess_data:
+    cmd: python src/data_preparation.py
+    deps:
+      - data/raw/bank-additional-full.csv
+      - src/data_preparation.py
+    outs:
+      - data/processed/bank_processed.csv
+
+
 

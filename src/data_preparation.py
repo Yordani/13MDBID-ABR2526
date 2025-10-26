@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 INPUT_CSV = 'data/raw/bank-additional-full.csv'
-OUTPUT_CSV = 'data/processed/bank-processed-full.csv'
+OUTPUT_CSV = 'data/processed/bank_processed.csv'
 
 def preprocess_data(input_path=INPUT_CSV, output_path=OUTPUT_CSV):
     # Load the dataset

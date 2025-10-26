@@ -25,6 +25,38 @@ stages:
       md5: d751713988987e9331980363e24189ce.dir
       size: 0
       nfiles: 0
+  preprocess_data:
+    cmd: python src/data_preparation.py
+    deps:
+    - path: data/raw/bank-additional-full.csv
+      hash: md5
+      md5: f6cb2c1256ffe2836b36df321f46e92c
+      size: 5834924
+    - path: src/data_preparation.py
+      hash: md5
+      md5: 81d156398034e185684db4afb6944a8b
+      size: 1460
+    outs:
+    - path: data/processed/bank_processed.csv
+      hash: md5
+      md5: 55e366747e3d648067a8f9e788de87a9
+      size: 4444956
+  visualize_data:
+    cmd: python src/data_visualization.py
+    deps:
+    - path: data/raw/bank-additional-full.csv
+      hash: md5
+      md5: f6cb2c1256ffe2836b36df321f46e92c
+      size: 5834924
+    outs:
+    - path: docs/figures/distribucion_educacion.png
+      hash: md5
+      md5: 8da827cea5108f1971d1a3090b0c5ae7
+      size: 18154
+    - path: docs/figures/distribucion_target.png
+      hash: md5
+      md5: 1146627dcb1553f862b3c92d8c786cdf
+      size: 22251
   test_data_quality:
     cmd: pytest --html=docs/test_results/test_results.html --self-contained-html test/test_data_quality.py
     deps:
@@ -34,21 +66,27 @@ stages:
       size: 5834924
     - path: test/test_data_quality.py
       hash: md5
-      md5: 58139f994bf7609ab08d299a58d5ebcd
-      size: 2039
+      md5: 98f04ae5066ee10c46800e8819135804
+      size: 1804
     outs:
     - path: docs/test_results/test_results.html
       hash: md5
-      md5: 2d46a3b227c708efa93f120ba00588a7
-      size: 33678
+      md5: b1605c82208dfe26e514b6c88213bbfa
+      size: 33684
   test_data_gx:
-    cmd: pytest --html=docs/test_results/test_results.html --self-contained-html  test/test_data_gx.py
+    cmd: pytest --html=docs/test_results/test_results_gx.html --self-contained-html
+      test/test_data_gx.py
     deps:
     - path: data/raw/bank-additional-full.csv
       hash: md5
       md5: f6cb2c1256ffe2836b36df321f46e92c
       size: 5834924
-    - path: test/test_data_quality.py
+    - path: test/test_data_gx.py
       hash: md5
-      md5: 58139f994bf7609ab08d299a58d5ebcd
-      size: 2039
+      md5: 6ea63eb1a5545722befbc11da51aa029
+      size: 1262
+    outs:
+    - path: docs/test_results/test_results_gx.html
+      hash: md5
+      md5: a6789341c01c0fd0be7fea81e4f5a947
+      size: 33108

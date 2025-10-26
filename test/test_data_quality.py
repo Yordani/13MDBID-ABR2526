@@ -35,11 +35,6 @@ def test_basico(datos_banco):
     #Verificar que el DataFrame tiene el número esperado de columnas
     assert df.shape[1] == 21, "El DataFrame no tiene filas"
 
-def pytest_configure(config):
-    global pytest_html
-    pytest_html = config.pluginmanager.getplugin("html")
-    config._metadata['Proyecto'] = "13MBID - Metodologías de gestión"
-    config._metadata['Autor'] = "Yordani Díaz"
 
 if __name__ == "__main__":
     try:       

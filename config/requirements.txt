@@ -13,3 +13,5 @@ pandera
 great_expectations 
 fastapi 
 plotly 
+pytest-html
+pytest-metadata
