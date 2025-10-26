@@ -9,8 +9,8 @@ stages:
       size: 5834924
     - path: src/data_visualization.py
       hash: md5
-      md5: 74a192ea2f827e5398edf90d5b670c51
-      size: 2262
+      md5: e2761855e729c3a32dcb57a9b3e815b3
+      size: 2278
     outs:
     - path: docs/figures
       hash: md5
@@ -25,3 +25,19 @@ stages:
       md5: d751713988987e9331980363e24189ce.dir
       size: 0
       nfiles: 0
+  test_data_quality:
+    cmd: pytest --html=docs/test_results/test_results.html --self-contained-html test/test_data_quality.py
+    deps:
+    - path: data/raw/bank-additional-full.csv
+      hash: md5
+      md5: f6cb2c1256ffe2836b36df321f46e92c
+      size: 5834924
+    - path: test/test_data_quality.py
+      hash: md5
+      md5: 58139f994bf7609ab08d299a58d5ebcd
+      size: 2039
+    outs:
+    - path: docs/test_results/test_results.html
+      hash: md5
+      md5: a4156ef543ffcf7df494d617528cd9cd
+      size: 33678

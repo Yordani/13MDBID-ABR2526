@@ -10,10 +10,10 @@ def visualizar_datos(fuente: str = 'data/raw/bank-additional-full.csv',
                      salida: str ='docs/figures/'):
         """ Genera una serie de gráfias sobre los datos y los exporta
         
-    Args:
-        fuente (str): Ruta al archivo CSV con los datos.
-        salida (str): Ruta al directorio donde se guardarán las gráficas.
-    """       
+        Args:
+            fuente (str): Ruta al archivo CSV con los datos.
+            salida (str): Ruta al directorio donde se guardarán las gráficas.
+        """       
 
         #gRAFICO 1: Distribución de la variable objetivo
         Path(salida).mkdir(parents=True, exist_ok=True)

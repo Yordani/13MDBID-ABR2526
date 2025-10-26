@@ -7,7 +7,7 @@ def datos_banco():
     df = pd.read_csv("data/raw/bank-additional-full.csv", sep=';')
     return df
 
-def test_esquema():
+def test_esquema(datos_banco):
     ''' Prueba para verificar que el DataFrame cumple con el esquema esperado '''
     df = datos_banco
     esquena = DataFrameSchema({
@@ -35,11 +35,16 @@ def test_basico(datos_banco):
     #Verificar que el DataFrame tiene el número esperado de columnas
     assert df.shape[1] == 21, "El DataFrame no tiene filas"
 
+def pytest_configure(config):
+    global pytest_html
+    pytest_html = config.pluginmanager.getplugin("html")
+    config._metadata['Proyecto'] = "13MBID - Metodologías de gestión"
+    config._metadata['Autor'] = "Yordani Díaz"
+
 if __name__ == "__main__":
-    try:
-        test_esquema(datos_banco())
-        test_basico(datos_banco())
-        print("Todas las pruebas pasaron exitosamente.")
+    try:       
+        test_esquema(datos_banco)
+        test_basico(datos_banco)        
         with open("docs/test_results/test_results.txt", "w") as f:
             f.write("Todas las pruebas pasaron exitosamente.\n")
     except AssertionError as e:
