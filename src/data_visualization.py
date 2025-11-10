@@ -58,6 +58,29 @@ def visualizar_datos(fuente: str = 'data/raw/bank-additional-full.csv',
         plt.close()
 
 
+        #Grafico 5: Distribución del tipo de trabajo
+        cat_col = "job"
+        plt.figure(figsize=(6, 4))
+        order = df[cat_col].value_counts().index
+        sns.countplot(y=cat_col, data=df, order=order)
+        plt.title(f"Distribución de {cat_col}")
+        plt.xlabel("Cantidad")
+        plt.ylabel(cat_col)
+        plt.tight_layout()
+        plt.savefig(Path(salida) / f"Distribucion_{cat_col}.png")
+        plt.close()
+
+        #Grafico 6: Correlaciones altas
+        corr = df.select_dtypes(include=['float64', 'int64']).corr()
+        high_corr = corr[(corr.abs() > 0.5) & (corr.abs() < 1)]
+        plt.figure(figsize=(6, 4))
+        sns.heatmap(high_corr, annot=True, cmap='coolwarm', fmt=".2f")
+        plt.title("Correlaciones altas (>0.5)")
+        plt.tight_layout()
+        plt.savefig(Path(salida) / 'correlaciones_altas.png')
+        plt.close()
+
+
 if __name__ == "__main__":    
     visualizar_datos()
         
