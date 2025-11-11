@@ -259,7 +259,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--metrics-output",
         type=str,
-        default="metrics/metrics.json",
+        default="metrics/model_metrics.json",
         help="Ruta donde guardar las métricas"
     )
     
