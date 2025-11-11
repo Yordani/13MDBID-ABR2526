@@ -34,13 +34,13 @@ stages:
       size: 5834924
     - path: src/data_preparation.py
       hash: md5
-      md5: 81d156398034e185684db4afb6944a8b
-      size: 1460
+      md5: 13f26fdec986741ab58365e88e761571
+      size: 1529
     outs:
     - path: data/processed/bank_processed.csv
       hash: md5
-      md5: 55e366747e3d648067a8f9e788de87a9
-      size: 4444956
+      md5: d4dbc520e8f07dfb40c1b08f169af35b
+      size: 4402467
   visualize_data:
     cmd: python src/data_visualization.py
     deps:
